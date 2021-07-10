@@ -4,37 +4,23 @@ import store from '../../redux/store';
 import {add} from '../Action/Action';
 // import Subscribe from ./Subscribe/Subscribe;
 
-class MovieItem extends Component {
-
-    
-    //     state = {
-    //         subscribed: false,
-    //         text: "Добавить в список"
-    //     };
-    
-    //     clickHandler = () => {
-    //         this.setState({text: "Добавить в список", subscribed: true});
-    //     };
-    
-    //     render () {
-    //         let {text} = this.state;
-    
-    //         return (
-    //             <button type = "button" onClick={this.clickHandler}>
-    //                 {text}
-    //             </button>
-    //         )
-    //     }
-    // }
-
-    // subscribe() {
-    
-    // }
+class MovieItem extends Component {  
+    state = { 
+        movies: []
+        
+    }
 
     addMovieToFilm = (poster) => {
         store.dispatch({
           type: add,
           movieIdToFilm: poster
+           })
+
+          store.subscribe(() => {
+            const globalState = store.getState();
+            this.setState({
+                movies: globalState.movies
+            })
         });
       }
 

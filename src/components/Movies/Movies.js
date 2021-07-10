@@ -6,12 +6,18 @@ import store from '../../redux/store';
 class Movies extends Component {
     state = { 
         movies: []
-        
     }
 
     componentDidMount() {
         let globalState = store.getState();
         this.setState({movies:globalState.movies});
+
+        store.subscribe(() => {
+            let globalState = store.getState();
+            this.setState({
+                movies: globalState.movies
+            })
+        })
     }
 
     render() { 

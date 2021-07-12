@@ -1,4 +1,4 @@
-import {add} from '../components/Action/Action';
+import {add, refresh} from '../components/Action/Action';
 
 let initialState = {
     film: [],
@@ -27,6 +27,10 @@ function reducer(state = initialState, action) {
         let updateState = {...state};
         updateState.film = updateFilm
         return updateState;
+    } else if (action.type === refresh) {
+        console.log('---', state)
+        console.log('+++', action.movies)
+        
     }
 
     return state;

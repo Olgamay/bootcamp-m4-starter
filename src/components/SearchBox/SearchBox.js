@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './SearchBox.css';
 import reducer from '../../redux/reducer';
-import {add} from '../Action/Action';
+import store from '../../redux/store';
+import {add, refresh} from '../Action/Action';
 
 const apikey = '46383995';
 
@@ -18,19 +19,19 @@ class SearchBox extends Component {
         e.preventDefault();
     }
 
-    getFilmFetch() {
+    getFilmFetch = () => {
         // 1. Получаем данные из форм с помощью объекта FormData 
         // 2. Из этих данных выцепить только то, что находится в поле поиска
-        fetch(` http://www.omdbapi.com/?i=${this.state.searchLine}&apikey=${apikey}`)
+        fetch(` http://www.omdbapi.com/?s=${this.state.searchLine}&apikey=${apikey}`)
         .then((response)=> {      
             return response.json();
         })
         .then(data => {
             console.log(data) 
-                reducer.dispatch ({
-                    type: add,
-                    movieIdToFilm: 'poster'
-                })            
+            store.dispatch ({
+                type: refresh,
+                movies: data
+            })            
                        // Вызываем метод, который вызовет работу reducer - dispatch()
         })
     }

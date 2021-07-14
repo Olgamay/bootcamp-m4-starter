@@ -36,6 +36,14 @@ class Favorites extends Component {
 
 
     getFilm() {
+        let data = {
+            title: "Example List",
+            movies: [
+                "tt0068646",
+                "tt0098019"
+            ]
+        };
+
         fetch('https://acb-api.algoritmika.org/api/movies/list', {
             metod: 'POST',
             headers: {
@@ -46,10 +54,10 @@ class Favorites extends Component {
                 //     "tt0098019"
                 // ]
             },
-            body: JSON.stringify(info)
+            body: JSON.stringify(data)
         })
 
-        fetch('https://acb-api.algoritmika.org/api/movies/list')
+        // fetch('https://acb-api.algoritmika.org/api/movies/list')
         .then(response => response.json())
         .then(data => {
 

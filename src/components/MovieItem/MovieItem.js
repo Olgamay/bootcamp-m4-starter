@@ -4,37 +4,26 @@ import store from '../../redux/store';
 import {add} from '../Action/Action';
 // import Subscribe from ./Subscribe/Subscribe;
 
-class MovieItem extends Component {  
-    state = { 
-        movies: []
-        
-    }
+class MovieItem extends Component {
 
-    addMovieToFilm = (poster) => {
+    addMovieToFilm = (imdbID) => {
         store.dispatch({
           type: add,
-          movieIdToFilm: poster
+          movieIdToFilm: imdbID
            })
-
-          store.subscribe(() => {
-            const globalState = store.getState();
-            this.setState({
-                movies: globalState.movies
-            })
-        });
       }
 
 
     
 
     render() {
-        const { title, year, poster } = this.props;
+        const { Poster, Title, Year, imdbID} = this.props;
         return (
             <article className="movie-item">
-                <img className="movie-item__poster" src={poster} alt={title} />
+                <img className="movie-item__poster" src={Poster} alt={Title} />
                 <div className="movie-item__info">
-                    <h3 className="movie-item__title">{title}&nbsp;({year})</h3>
-                    <button type="button" className="movie-item__add-button" onClick={() => this.addMovieToFilm(poster)}>Добавить в список</button>
+                    <h3 className="movie-item__title">{Title}&nbsp;({Year})</h3>
+                    <button type="button" className="movie-item__add-button" onClick={() => this.addMovieToFilm(imdbID)}>Добавить в список</button>
                 </div>
             </article>
         );

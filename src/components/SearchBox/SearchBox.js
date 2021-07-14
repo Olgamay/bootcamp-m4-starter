@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './SearchBox.css';
-import reducer from '../../redux/reducer';
 import store from '../../redux/store';
 import {add, refresh} from '../Action/Action';
 
@@ -19,7 +18,7 @@ class SearchBox extends Component {
         e.preventDefault();
     }
 
-    getFilmFetch = () => {
+    getFilmFetch = (e) => {
         // 1. Получаем данные из форм с помощью объекта FormData 
         // 2. Из этих данных выцепить только то, что находится в поле поиска
         fetch(` http://www.omdbapi.com/?s=${this.state.searchLine}&apikey=${apikey}`)
@@ -34,6 +33,7 @@ class SearchBox extends Component {
             })            
                        // Вызываем метод, который вызовет работу reducer - dispatch()
         })
+        e.preventDefault();
     }
 
     render() {

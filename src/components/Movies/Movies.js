@@ -20,6 +20,8 @@ class Movies extends Component {
         })
     }
 
+    
+
     render() { 
         return ( 
             <ul className="movies">

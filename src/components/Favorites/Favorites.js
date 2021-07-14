@@ -10,6 +10,7 @@ class Favorites extends Component {
         movies: [
             // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
         ]
+
     }
 
     componentDidMount() {
@@ -33,6 +34,32 @@ class Favorites extends Component {
         this.setState({ title: e.target.value });
     }
 
+
+    getFilm() {
+        fetch('https://acb-api.algoritmika.org/api/movies/list', {
+            metod: 'POST',
+            headers: {
+                "Content-type": 'application/json'
+                // "title": "Example List",
+                // "movies": [
+                //     "tt0068646",
+                //     "tt0098019"
+                // ]
+            },
+            body: JSON.stringify(info)
+        })
+
+        fetch('https://acb-api.algoritmika.org/api/movies/list')
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data.Title);
+        })
+        .catch(error => {
+            console.log("Произошла ошибка")
+        })
+    }
+
     render() { 
         const {title} = this.state;
 
@@ -48,7 +75,7 @@ class Favorites extends Component {
                             </li>;                        
                     })}
                 </ul>
-                <button type="button" className="favorites__save">Сохранить список</button>
+                <button type="button" className="favorites__save" onClick={this.getFilm}>Сохранить список</button>
             </div>
         );
     }

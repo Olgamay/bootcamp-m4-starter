@@ -36,11 +36,14 @@ function reducer(state = initialState, action) {
 
         return updateState;
     } else if (action.type === refresh) {
-        let updateState = state.movies.filter(item => {
-        return item.imdbID !== action.refreshToMovie
-        })
-        state.updateFilm = updateState
-        
+        // let updateState = state.movies.filter(item => {
+        //     return item.imdbID !== action.refreshToMovie
+        // })
+        let newState = {...state};
+        newState.movies = action.movies.Search;
+
+        // state.updateFilm = updateState
+        return newState
         
         // console.Log('+++', updateState)
         // console.log(this.setInitialState.movies)

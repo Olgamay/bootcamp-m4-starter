@@ -16,7 +16,8 @@ class Favorites extends Component {
         store.subscribe(() =>  {
             let globalState = store.getState();
             this.setState({
-                movie: globalState.updateFilme
+                // здесь была ошибка при записи данных в локальный стейт
+                movies: globalState.film
             });
         });
     }

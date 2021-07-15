@@ -48,20 +48,14 @@ class Favorites extends Component {
             metod: 'POST',
             headers: {
                 "Content-type": 'application/json'
-                // "title": "Example List",
-                // "movies": [
-                //     "tt0068646",
-                //     "tt0098019"
-                // ]
             },
             body: JSON.stringify(data)
         })
-
-        // fetch('https://acb-api.algoritmika.org/api/movies/list')
         .then(response => response.json())
         .then(data => {
+            // data.movies.map(data)
 
-            console.log(data.Title);
+            console.log(data);
         })
         .catch(error => {
             console.log("Произошла ошибка")

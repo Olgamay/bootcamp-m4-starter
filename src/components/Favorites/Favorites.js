@@ -39,11 +39,8 @@ class Favorites extends Component {
 
     postMoviesList = () => {
         let data = {
-            title: "Example List",
-            movies: [
-                "tt0068646",
-                "tt0098019"
-            ]
+            title: "",
+            movies: []
         };
 
         // перебираем массив id фильмов из локального стейта и
@@ -56,9 +53,12 @@ class Favorites extends Component {
         console.log('-----', content)
         
         // Массив imdbID из переменной content подставить в data.movies
-
+        
+        let elementId = {imdbID: ""};
+        this.data = [...data, elementId];    
+        
         // В data.title записываем название списка фильмов
-
+        this.data.title = this.state.title
 
         fetch('https://acb-api.algoritmika.org/api/movies/list', {
             method: 'POST',

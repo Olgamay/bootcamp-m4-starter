@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import store from '../../redux/store';
 import './Favorites.css';
 import {refresh} from '../Action/Action';
+import {Link} from "react-router-dom"
 
 
 class Favorites extends Component {
@@ -15,7 +16,8 @@ class Favorites extends Component {
             // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 },
             // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
         ],
-        id: ""
+        id: "",
+        button: "Сохранить список"
     }
 
     componentDidMount() {
@@ -24,6 +26,7 @@ class Favorites extends Component {
             this.setState({
                 // здесь была ошибка при записи данных в локальный стейт
                 movies: globalState.film
+        
             });
         });
     }
@@ -43,7 +46,8 @@ class Favorites extends Component {
     postMoviesList = () => {
         let data = {
             title: "",
-            movies: []
+            movies: [],
+            
         };
 
         // перебираем массив id фильмов из локального стейта и
@@ -80,6 +84,18 @@ class Favorites extends Component {
         })
     }
 
+        getIdButton () => {
+            if (id === NaN) {
+                this.state.botton = "Сохранить список"
+            } else {
+                this.state.botton = "Перейти к списку"
+                <Link>
+
+                </Link>
+               
+            }        
+        }
+
     render() { 
         const {title} = this.state;
 
@@ -97,7 +113,7 @@ class Favorites extends Component {
                 </ul>
                 {/* Добавить условие отображения кнопок */}
                 {/* Если свойство id в стейте пустое, то мы отображаем кнопку Сохранить список */}
-                <button type="button" className="favorites__save" onClick={this.postMoviesList}>Сохранить список</button>
+                <button type="button" className="favorites__save" onClick={this.postMoviesList}>{this.state.button}</button>
                 {/* Если мы получили id, то есть он есть в стейете, то мы отображаем ссылку с текстом "Перейти к списку" (ссылка с помощью компонента <Link>) */}
 
             </div>

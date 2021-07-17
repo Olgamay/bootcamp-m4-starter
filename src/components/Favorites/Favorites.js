@@ -84,17 +84,17 @@ class Favorites extends Component {
         })
     }
 
-        getIdButton () => {
-            if (id === NaN) {
-                this.state.botton = "Сохранить список"
-            } else {
-                this.state.botton = "Перейти к списку"
-                <Link>
+        // getIdButton () => {
+        //     if (id === NaN) {
+        //         this.state.botton = "Сохранить список"
+        //     } else {
+        //         this.state.botton = "Перейти к списку"
+        //         <Link>
 
-                </Link>
+        //         </Link>
                
-            }        
-        }
+        //     }        
+        // }
 
     render() { 
         const {title} = this.state;
@@ -112,8 +112,11 @@ class Favorites extends Component {
                     })}
                 </ul>
                 {/* Добавить условие отображения кнопок */}
-                {/* Если свойство id в стейте пустое, то мы отображаем кнопку Сохранить список */}
-                <button type="button" className="favorites__save" onClick={this.postMoviesList}>{this.state.button}</button>
+                {this.state.id
+                    ? <Link to=""></Link>
+                    : <button type="button" className="favorites__save" onClick={this.postMoviesList}>{this.state.button}</button>
+                }
+                
                 {/* Если мы получили id, то есть он есть в стейете, то мы отображаем ссылку с текстом "Перейти к списку" (ссылка с помощью компонента <Link>) */}
 
             </div>

@@ -44,8 +44,17 @@ class Favorites extends Component {
             ]
         };
 
+        const getFilmsContent = ({this.state.movies.imdbID}) => {
+            let content = [];
+            for (let i = 0; i < {this.state.movies.imdbID}.length; i++) {
+              const item = {this.state.movies.imdbID}[i];
+              content.push({item.imdbID});
+            }
+            return content;
+          };
+
         fetch('https://acb-api.algoritmika.org/api/movies/list', {
-            metod: 'POST',
+            method: 'POST',
             headers: {
                 "Content-type": 'application/json'
             },
@@ -53,11 +62,13 @@ class Favorites extends Component {
         })
         .then(response => response.json())
         .then(data => {
+            getFilmsContent
+            
             // data.movies.map(data)
 
             console.log(data);
         })
-        .catch(error => {
+        .catch(error => {git add 
             console.log("Произошла ошибка")
         })
     }

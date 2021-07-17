@@ -76,7 +76,7 @@ class Favorites extends Component {
             
             // data.movies.map(data)
             // 1. Записать в локальный стейт идентификатор, который мы получили от алгоритмики
-
+            this.setState({id:data.id})
             console.log(data);
         })
         .catch(error => {
@@ -113,7 +113,7 @@ class Favorites extends Component {
                 </ul>
                 {/* Добавить условие отображения кнопок */}
                 {this.state.id
-                    ? <Link to=""></Link>
+                    ? <Link to="/Link/:id=${}1b93705d-9bb8-498f-a156-a305a387a391">Перейти к списку</Link>
                     : <button type="button" className="favorites__save" onClick={this.postMoviesList}>{this.state.button}</button>
                 }
                 

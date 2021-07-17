@@ -11,6 +11,25 @@ class ListPage extends Component {
         const id = this.props.match.params;
         console.log(id);
         // TODO: запрос к сервер на получение списка
+        // fetch('https://acb-api.algoritmika.org/api/movies/list/:id=${}', {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-type": 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+            
+        //     // data.movies.map(data)
+        //     // 1. Записать в локальный стейт идентификатор, который мы получили от алгоритмики
+        //     this.setState({id:data.id})
+        //     console.log(data);
+        // })
+        // .catch(error => {
+        //     console.log("Произошла ошибка")
+        // })
+
         // TODO: запросы к серверу по всем imdbID
     }
     render() { 

@@ -8,6 +8,8 @@ class Favorites extends Component {
     state = {
         title: 'Новый список',
         movies: [
+            // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 },
+            // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 },
             // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
         ]
 
@@ -35,7 +37,7 @@ class Favorites extends Component {
     }
 
 
-    getFilm() {
+    postMoviesList = () => {
         let data = {
             title: "Example List",
             movies: [
@@ -44,14 +46,19 @@ class Favorites extends Component {
             ]
         };
 
-        const getFilmsContent = ({this.state.movies.imdbID}) => {
-            let content = [];
-            for (let i = 0; i < {this.state.movies.imdbID}.length; i++) {
-              const item = {this.state.movies.imdbID}[i];
-              content.push({item.imdbID});
-            }
-            return content;
-          };
+        // перебираем массив id фильмов из локального стейта и
+        // записываем в data.movies
+        let content = [];
+        for (let i = 0; i < this.state.movies.length; i++) {
+            let item = this.state.movies[i];
+            content.push(item.imdbID);
+        }
+        console.log('-----', content)
+        
+        // Массив imdbID из переменной content подставить в data.movies
+
+        // В data.title записываем название списка фильмов
+
 
         fetch('https://acb-api.algoritmika.org/api/movies/list', {
             method: 'POST',
@@ -62,13 +69,12 @@ class Favorites extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            getFilmsContent
             
             // data.movies.map(data)
 
             console.log(data);
         })
-        .catch(error => {git add 
+        .catch(error => {
             console.log("Произошла ошибка")
         })
     }
@@ -88,7 +94,7 @@ class Favorites extends Component {
                             </li>;                        
                     })}
                 </ul>
-                <button type="button" className="favorites__save" onClick={this.getFilm}>Сохранить список</button>
+                <button type="button" className="favorites__save" onClick={this.postMoviesList}>Сохранить список</button>
             </div>
         );
     }

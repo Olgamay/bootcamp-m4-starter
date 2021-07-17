@@ -76,8 +76,8 @@ class Favorites extends Component {
             
             // data.movies.map(data)
             // 1. Записать в локальный стейт идентификатор, который мы получили от алгоритмики
-            this.setState({id:data.id})
-            console.log(data);
+            this.setState({id: data.id})
+            console.log(this.state);
         })
         .catch(error => {
             console.log("Произошла ошибка")
@@ -97,7 +97,7 @@ class Favorites extends Component {
         // }
 
     render() { 
-        const {title} = this.state;
+        const {title, id} = this.state;
 
         return (
             <div className="favorites">
@@ -112,9 +112,9 @@ class Favorites extends Component {
                     })}
                 </ul>
                 {/* Добавить условие отображения кнопок */}
-                {this.state.id
-                    ? <Link to="/Link/:id=${}1b93705d-9bb8-498f-a156-a305a387a391">Перейти к списку</Link>
-                    : <button type="button" className="favorites__save" onClick={this.postMoviesList}>{this.state.button}</button>
+                {id
+                    ? <Link to={'/list/' + this.state.id}>Перейти к списку</Link>
+                    : <button type="button" className="favorites__save"  onClick={this.postMoviesList}>{this.state.button}</button>
                 }
                 
                 {/* Если мы получили id, то есть он есть в стейете, то мы отображаем ссылку с текстом "Перейти к списку" (ссылка с помощью компонента <Link>) */}

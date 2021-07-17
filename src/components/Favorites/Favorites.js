@@ -5,14 +5,17 @@ import {refresh} from '../Action/Action';
 
 
 class Favorites extends Component {
+    // constructor() {
+    //     this.
+    // }
     state = {
         title: 'Новый список',
         movies: [
             // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 },
             // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 },
             // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
-        ]
-
+        ],
+        id: ""
     }
 
     componentDidMount() {
@@ -52,13 +55,10 @@ class Favorites extends Component {
         }
         console.log('-----', content)
         
-        // Массив imdbID из переменной content подставить в data.movies
-        
-        let elementId = {imdbID: ""};
-        this.data = [...data, elementId];    
-        
+        // Массив imdbID из переменной content подставить в data.movies   
+        data.movies = content;
         // В data.title записываем название списка фильмов
-        this.data.title = this.state.title
+        data.title = this.state.title
 
         fetch('https://acb-api.algoritmika.org/api/movies/list', {
             method: 'POST',
@@ -71,6 +71,7 @@ class Favorites extends Component {
         .then(data => {
             
             // data.movies.map(data)
+            // 1. Записать в локальный стейт идентификатор, который мы получили от алгоритмики
 
             console.log(data);
         })
@@ -94,7 +95,11 @@ class Favorites extends Component {
                             </li>;                        
                     })}
                 </ul>
+                {/* Добавить условие отображения кнопок */}
+                {/* Если свойство id в стейте пустое, то мы отображаем кнопку Сохранить список */}
                 <button type="button" className="favorites__save" onClick={this.postMoviesList}>Сохранить список</button>
+                {/* Если мы получили id, то есть он есть в стейете, то мы отображаем ссылку с текстом "Перейти к списку" (ссылка с помощью компонента <Link>) */}
+
             </div>
         );
     }

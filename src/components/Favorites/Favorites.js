@@ -77,7 +77,7 @@ class Favorites extends Component {
             // data.movies.map(data)
             // 1. Записать в локальный стейт идентификатор, который мы получили от алгоритмики
             this.setState({id: data.id})
-            console.log(this.state);
+            console.log("999", this.state);
         })
         .catch(error => {
             console.log("Произошла ошибка")

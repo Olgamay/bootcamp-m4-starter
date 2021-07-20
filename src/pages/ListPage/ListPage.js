@@ -1,45 +1,69 @@
 import React, { Component } from 'react';
 import './ListPage.css';
+import Favorites from "../../components/Favorites/Favorites";
 
-const apikey = '46383995';
+let result = [];
+let imdbID = [];
+let apikey = '1b6eef56';
+
+
 
 class ListPage extends Component {
     state = {
         movies: [
             { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
         ],
-        imdbID: ""
+        
     }
     componentDidMount() {
         let id = this.props.match.params.id;
-        console.log('https://acb-api.algoritmika.org/api/movies/list/' +id);
-        console.log(id)
+        // console.log("888", 'https://acb-api.algoritmika.org/api/movies/list/' +id);
+        // console.log("666", id)
+        
 
-        console.log(` http://www.omdbapi.com/?s=${this.state.searchLine}&apikey=${apikey}`);
-        console.log(id)
+        
 
         // TODO: запрос к сервер на получение списка
         fetch('https://acb-api.algoritmika.org/api/movies/list/' +id)
             .then(response => response.json())
-            .then(data => {
-                fetch('https://acb-api.algoritmika.org/api/movies/list/' +imdbID)
+            .then((data) => {
+                // console.log("636", data.movies)
+                // let listMovies = [...this.state.movies];
+                // listMovies.push(data.movies)
+                // console.log("111", listMovies)
+                // let list = listMovies
+
+                
+                // for(let i = 0; i < list.length; i++) {
+                //     imdbID.push(list[i].imdbID)
+                //     console.log("44", imdbID)
+                // }
+                
+                fetch('http://www.omdbapi.com/?i=${this.state.searchLine}&apikey=${apikey}')
                     .then(response => response.json())
                     .then(data => {
-                        console.log("imdbID", data);
-                    })
-            // фетч запрос к imdbID и цикл по шв
+                        imdbID = {...data}
+                        result.push(imdbID)
+                        this.setState({movies: result})
+                        console.log("77", data)
+                }) 
+            // // фетч запрос к imdbID и цикл по шв
 
-            // фетч запрос к imdbID и цикл по шв
-                console.log("id", data);
+            // // фетч запрос к imdbID и цикл по шв
+            //     console.log("id", data);
             })
             .catch(error => {
                 console.log("Произошла ошибка");
             });
-       
+            
+            
         // TODO: запросы к серверу по всем imdbID
 
 
     }
+
+    
+    
     render() { 
         return (
             <div className="list-page">
@@ -48,7 +72,7 @@ class ListPage extends Component {
                     {this.state.movies.map((item) => {
                         return (
                             <li key={item.imdbID}>
-                                <a href="#" target="_blank">{item.title} ({item.year})</a>
+                                <a href={"https://www.imbd.com/title/" + item.imdbID} target="_blank">{item.title} ({item.year})</a>
                             </li>
                         );
                     })}

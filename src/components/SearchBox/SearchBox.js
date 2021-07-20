@@ -3,7 +3,7 @@ import './SearchBox.css';
 import store from '../../redux/store';
 import {add, refresh} from '../Action/Action';
 
-const apikey = '46383995';
+const apikey = '1b6eef56';
 
 class SearchBox extends Component {
     state = {
@@ -21,7 +21,7 @@ class SearchBox extends Component {
     getFilmFetch = (e) => {
         // 1. Получаем данные из форм с помощью объекта FormData 
         // 2. Из этих данных выцепить только то, что находится в поле поиска
-        fetch(` http://www.omdbapi.com/?s=${this.state.searchLine}&apikey=${apikey}`)
+        fetch(`http://www.omdbapi.com/?i=${this.state.searchLine}&apikey=${apikey}`)
         .then((response)=> {      
             return response.json();
         })

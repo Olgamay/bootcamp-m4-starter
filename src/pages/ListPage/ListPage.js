@@ -27,10 +27,16 @@ class ListPage extends Component {
         // TODO: запрос к сервер на получение списка
         fetch('https://acb-api.algoritmika.org/api/movies/list/' +id)
             .then(response => response.json())
-            .then((data) => {                
-                fetch('http://www.omdbapi.com/?i=${this.state.props.searchLine}&apikey=${apikey}')
+            .then((data) => {    
+               
+                // Ольга, кавычки должны быть косые, чтобы в строку текста мы могли подставлять переменные    
+                
+                // fetch, который ниже, должен выполняться в цикле для каждого id фильма,  который мы получили при fetch запросе выше
+                fetch(`http://www.omdbapi.com/?i=${ /* сюда надо подставлять id фильма, а не то, что написано правее*/  /*this.state.props.searchLine*/ console.log() }&apikey=${apikey}`)
                     .then(response => response.json())
                     .then(data => {
+                        // здесь что-то творится непонятное... 
+                        // здесь нужно полученную информацию о фильмах запихивать в state
                         imdbID = {...data}
                         result.push(imdbID)
                         this.setState({movies: result})

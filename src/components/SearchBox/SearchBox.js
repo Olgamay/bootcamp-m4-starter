@@ -21,6 +21,8 @@ class SearchBox extends Component {
     getFilmFetch = (e) => {
         // 1. Получаем данные из форм с помощью объекта FormData 
         // 2. Из этих данных выцепить только то, что находится в поле поиска
+
+        // здесь в запросе у тебя ошибка, поэтому не работает поиск по фильмам
         fetch(`http://www.omdbapi.com/?i=${this.state.searchLine}&apikey=${apikey}`)
         .then((response)=> {      
             return response.json();
